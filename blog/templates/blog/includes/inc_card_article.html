@@ -1,0 +1,27 @@
+<div class="col-3">
+    <div class="card mb-4 box-shadow">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{{ object.title }}</h4>
+        </div>
+        <div class="card-body">
+            {% include 'blog/includes/inc_button_perms.html'%}
+            <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                <li>- Содержимое: {{ object.content }}</li>
+                <li>- Дата создания:</li>
+                <li> {{ object.creation_date }}</li>
+            </ul>
+            <nav class="ms-5">
+                <a href="{% url 'blog:view' object.pk %}" type="button"
+                   class="btn btn-lg btn-sm btn-outline-secondary">Подробнее</a>
+                {% if perms.materials.change_post %}
+                <a href="{% url 'blog:edit' object.pk %}" type="button"
+                   class="btn btn-lg btn-sm btn-outline-secondary">Изменить</a>
+                {% endif %}
+                {% if perms.materials.delete_post %}
+                <a href="{% url 'blog:delete' object.pk %}" type="button"
+                   class="btn btn-lg btn-sm btn-outline-danger">Удалить</a>
+                {% endif %}
+            </nav>
+        </div>
+    </div>
+</div>

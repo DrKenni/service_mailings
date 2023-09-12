@@ -1,0 +1,21 @@
+{% extends 'mailing/base.html' %}
+{% block content %}
+{% load my_tags %}
+<div class="col-12 mb-2">
+    {% if user.is_authenticated %}
+       <a class="btn btn-btn btn-primary" href="{% url 'blog:create' %}">Добавить блог</a>
+    {% endif %}
+</div>
+
+{% if user.superuser %}
+    {% for object in object_list %}
+        {% include 'blog/includes/inc_card_article.html'%}
+    {% endfor %}
+{%  else %}
+    {% for object in object_list %}
+        {% if object.is_published %}
+            {% include 'blog/includes/inc_card_article.html'%}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{% endblock %}

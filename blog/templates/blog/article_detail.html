@@ -1,0 +1,20 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4"></h1>
+    <img class="card-img-top"
+         src="{{ object.preview|mymedia_blog }}">
+    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+        <li>Заголовок: {{ object.title }}</li>
+        <li>Ссылка: {{object.slug}}</li>
+        <li>Содержимое: {{object.content}}</li>
+        <li>Дата создания: {{object.creation_date}}</li>
+        <li>Просмотры: {{object.views}}</li>
+    </ul>
+    <div>
+        {% include 'blog/includes/inc_button_perms.html'%}
+        <a href="{% url 'blog:list' %}" class="btn btn-warning">Назад</a>
+    </div>
+</div>
+{% endblock %}

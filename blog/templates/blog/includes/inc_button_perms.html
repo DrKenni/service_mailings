@@ -1,0 +1,9 @@
+{% if perms.blog.change_article %}
+    {% if object.is_published %}
+        <a href="{% url 'blog:switch_publication' object.pk %}" type="button"
+           class="btn btn-lg btn-sm btn-outline-secondary">Отменить</a>
+    {% else %}
+        <a href="{% url 'blog:switch_publication' object.pk %}" type="button"
+           class="btn btn-lg btn-sm btn-outline-secondary">Опубликовать</a>
+    {% endif %}
+{% endif %}
