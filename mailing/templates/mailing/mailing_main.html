@@ -1,0 +1,12 @@
+{% extends 'mailing/base.html' %}
+{% block content %}
+<p class="float-end mb-1" >
+    <a href="{% url 'mailing:list_mailing' %}" style="color:#000000">Количество рассылок: {{ mailing }}</a>
+</p>
+<p class="float-end mb-1">
+    <a href="#" style="color:#000000">Количество активных рассылок: {{ active_mailing }}</a>
+</p>
+<p class="float-end mb-1">
+    <a href="#" style="color:#000000">Количество уникальных клиентов для рассылок: {{ clients }}</a>
+</p>
+{% endblock %}
