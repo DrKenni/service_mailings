@@ -1,0 +1,18 @@
+{% extends 'mailing/base.html'%}
+{% block content %}
+<div class="col-md-4">
+    <div class="card mb-4 box-shadow">
+        <div class="card-body">
+            <p class="card-text">{{ object }}</p>
+            <p class="card-text">{{ object.contact_email }}</p>
+            <p class="card-text">{{ object.comment }}</p>
+            <p class="card-text">
+                {% if object.is_active %}
+                    Активен
+                {% else %}
+                    Не активен
+                {% endif %}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

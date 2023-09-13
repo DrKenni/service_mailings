@@ -19,7 +19,7 @@ class MailingView(ListView):
         context_data['mailing'] = len(Mailing.objects.all())
         context_data['active_mailing'] = len(Mailing.objects.filter(status=2))
         context_data['title'] = 'Главная'
-        # context_data['clients'] = len(Client.objects.all().distinct('email'))
+        context_data['clients'] = len(Client.objects.all().distinct('email'))
         context_data['article'] = Article.objects.filter(is_published=True)[:3]
         return context_data
 
@@ -34,6 +34,7 @@ class MailingListView(ListView):
     extra_context = {
         'title': 'Список рассылок',
     }
+
 
 class MailingDetailView(DetailView):
     model = Mailing
