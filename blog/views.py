@@ -12,7 +12,6 @@ from blog.models import Article
 class ArticleCreateView(LoginRequiredMixin, CreateView):
     model = Article
     form_class = ArticleForm
-    fields = ('title', 'content', 'is_published', 'preview',)
     success_url = reverse_lazy('blog:list')
 
     def form_valid(self, form):
@@ -20,12 +19,17 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
             new_mat = form.save()
             new_mat.slug = slugify(new_mat.title)
             new_mat.save()
+            self.object = form.save()
+            self.object.owner = self.request.user
+            self.object.save()
 
         return super().form_valid(form)
 
 
 class ArticleListView(LoginRequiredMixin, ListView):
     model = Article
+
+    template_name = 'blog/article_list'
     extra_context = {
         'title': 'Статьи'
     }
@@ -48,11 +52,9 @@ class ArticleDetailView(LoginRequiredMixin, DetailView):
         return self.object
 
 
-class ArticleUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+class ArticleUpdateView(LoginRequiredMixin, UpdateView):
     model = Article
-    permission_required = 'blog.change_article'
     form_class = ArticleForm
-    fields = ('title', 'content', 'is_published', 'preview',)
     success_url = reverse_lazy('blog:list')
 
     def form_valid(self, form):

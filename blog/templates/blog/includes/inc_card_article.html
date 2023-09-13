@@ -12,14 +12,14 @@
             </ul>
             <nav class="ms-5">
                 <a href="{% url 'blog:view' object.pk %}" type="button"
-                   class="btn btn-lg btn-sm btn-outline-secondary">Подробнее</a>
-                {% if perms.materials.change_post %}
+                   class="btn btn-lg btn-sm btn-outline-secondary">View</a>
+                {% if user.email == object.owner.email %}
                 <a href="{% url 'blog:edit' object.pk %}" type="button"
-                   class="btn btn-lg btn-sm btn-outline-secondary">Изменить</a>
+                   class="btn btn-lg btn-sm btn-outline-secondary">Edit</a>
                 {% endif %}
-                {% if perms.materials.delete_post %}
+                {% if user.email == object.owner.email %}
                 <a href="{% url 'blog:delete' object.pk %}" type="button"
-                   class="btn btn-lg btn-sm btn-outline-danger">Удалить</a>
+                   class="btn btn-lg btn-sm btn-outline-danger">Delite</a>
                 {% endif %}
             </nav>
         </div>

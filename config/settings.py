@@ -156,7 +156,7 @@ SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER
 
 CRONJOBS = [
-    ('*/5 * * * *', 'mailing.cron.my_scheduled_job')
+    ('*/1 * * * *', 'mailing.cron.my_scheduled_job')
 ]
 
 CACHE_ENABLED = os.getenv('CACHE_ENABLED') == 'True'

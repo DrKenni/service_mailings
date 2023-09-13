@@ -48,7 +48,7 @@ class Log(models.Model):
     server_response = models.TextField(verbose_name='ответ почтового сервера', **NULLABLE)
     date_attempts = models.DateTimeField(auto_now_add=True, verbose_name='дата попытки')
     status = models.CharField(max_length=100, verbose_name='статус попытки')
-    mailing = models.ForeignKey(Mailing, on_delete=models.CASCADE, verbose_name='рассылки')
+    mailing = models.ForeignKey(Mailing, on_delete=models.CASCADE, verbose_name='рассылки',  **NULLABLE)
 
     def __str__(self):
         return f"{self.date_attempts}: {self.status}"

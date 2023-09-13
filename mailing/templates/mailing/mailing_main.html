@@ -1,6 +1,6 @@
 {% extends 'mailing/base.html' %}
 {% block content %}
-<p class="float-end mb-1" >
+<p class="float-end mb-1">
     <a href="{% url 'mailing:list_mailing' %}" style="color:#000000">Количество рассылок: {{ mailing }}</a>
 </p>
 <p class="float-end mb-1">
@@ -9,4 +9,29 @@
 <p class="float-end mb-1">
     <a href="#" style="color:#000000">Количество уникальных клиентов для рассылок: {{ clients }}</a>
 </p>
+{% for object in article %}
+<div class="col-md-4">
+    <div class="card mb-4 box-shadow">
+        <div class="card-body">
+            <p class="card-text">{{ object.title }}</p>
+            <p class="card-text">{{ object.creation_date }}</p>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary"><a
+                            href="{% url 'blog:view' object.pk %}">View</a></button>
+                    {% if perms.blog.change_article %}
+                    <button type="button" class="btn btn-sm btn-outline-secondary"><a
+                            href="{% url 'blog:edit' object.pk %}">Edit</a></button>
+                    {% endif %}
+                    {% if perms.blog.delete_article%}
+                    <button type="button" class="btn btn-sm btn-outline-danger"><a
+                            href="{% url 'blog:delete' object.pk %}">Delete</a></button>
+                    {% endif %}
+                </div>
+                <small class="text-body-secondary">Просмотров: {{ object.views }}</small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
 {% endblock %}

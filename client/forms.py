@@ -8,4 +8,4 @@ class ClientForms(StyleFormMixin, forms.ModelForm):
 
     class Meta:
         model = Client
-        fields = '__all__'
+        fields = ('first_name', 'last_name', 'surname', 'comment', 'contact_email')

@@ -6,16 +6,20 @@
        <a class="btn btn-btn btn-primary" href="{% url 'blog:create' %}">Добавить блог</a>
     {% endif %}
 </div>
+<!--{% for object in object_list %}-->
+<!--    {% if perm.blog.view_article %}-->
+<!--        {% include 'blog/includes/inc_card_article.html '%}-->
+<!--    {% endif %}-->
+<!--{% endfor %}-->
 
-{% if user.superuser %}
     {% for object in object_list %}
-        {% include 'blog/includes/inc_card_article.html'%}
+        {% include 'blog/includes/inc_card_article.html '%}
     {% endfor %}
-{%  else %}
-    {% for object in object_list %}
-        {% if object.is_published %}
-            {% include 'blog/includes/inc_card_article.html'%}
-        {% endif %}
-    {% endfor %}
-{% endif %}
+<!---->
+<!--    {% for object in object_list %}-->
+<!--        {% if object.is_published %}-->
+<!--            {% include 'blog/includes/inc_card_article.html'%}-->
+<!--        {% endif %}-->
+<!--    {% endfor %}-->
+
 {% endblock %}

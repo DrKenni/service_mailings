@@ -10,7 +10,7 @@ class ArticleForm(StyleFormMixin, forms.ModelForm):
 
     class Meta:
         model = Article
-        fields = '__all__'
+        fields = ('title', 'content', 'preview',)
 
     def clean_title(self):
         cleaned_data = self.cleaned_data['title']

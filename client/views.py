@@ -19,6 +19,12 @@ class ClientCreateView(LoginRequiredMixin, CreateView):
     form_class = ClientForms
     success_url = reverse_lazy('client:list')
 
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return super().form_valid(form)
+
 
 class ClientUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Client

@@ -12,14 +12,18 @@
             <p class="card-text">{{ object.get_frequency_display }}</p>
             <p class="card-text">{{ object.get_status_display }}</p>
             <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">
-                        <a href="{% url 'mailing:view_mailing' object.pk %}">View</a></button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">
-                        <a href="{% url 'mailing:update_mailing' object.pk %}">Edit</a></button>
-                    <button type="button" class="btn btn-sm btn-outline-danger">
-                        <a href="{% url 'mailing:delete_mailing' object.pk %}">Delete</a></button>
-                </div>
+                <nav class="btn-group">
+                    <a type="button" class="btn btn-sm btn-outline-secondary"
+                       href="{% url 'mailing:view_mailing' object.pk %}">View</a>
+                    {% if user == object.user %}
+                    <a type="button" class="btn btn-sm btn-outline-secondary"
+                         href="{% url 'mailing:update_mailing' object.pk %}">Edit</a>
+                    {% endif %}
+                    {% if user == object.user %}
+                    <a type="button" class="btn btn-sm btn-outline-danger"
+                         href="{% url 'mailing:delete_mailing' object.pk %}">Delete</a>
+                    {% endif %}
+                </nav>
             </div>
         </div>
     </div>
