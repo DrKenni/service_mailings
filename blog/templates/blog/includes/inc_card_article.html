@@ -13,11 +13,11 @@
             <nav class="ms-5">
                 <a href="{% url 'blog:view' object.pk %}" type="button"
                    class="btn btn-lg btn-sm btn-outline-secondary">View</a>
-                {% if user.email == object.owner.email %}
+                {% if user.email == object.owner.email or user.is_superuser %}
                 <a href="{% url 'blog:edit' object.pk %}" type="button"
                    class="btn btn-lg btn-sm btn-outline-secondary">Edit</a>
                 {% endif %}
-                {% if user.email == object.owner.email %}
+                {% if user.email == object.owner.email or user.is_superuser %}
                 <a href="{% url 'blog:delete' object.pk %}" type="button"
                    class="btn btn-lg btn-sm btn-outline-danger">Delite</a>
                 {% endif %}

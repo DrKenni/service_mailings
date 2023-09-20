@@ -1,4 +1,4 @@
-{% if user.is_staff %}
+{% if user.is_superuser %}
     {% if object.is_published %}
         <a href="{% url 'blog:switch_publication' object.pk %}" type="button"
            class="btn btn-lg btn-sm btn-outline-secondary">Отменить</a>

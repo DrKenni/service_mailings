@@ -1,11 +1,14 @@
 from django.db import models
 
+from client.models import Client
 from users.models import User, NULLABLE
 
 
 class Message(models.Model):
     title = models.CharField(max_length=300, verbose_name='заголовок')
     body = models.TextField(verbose_name='сообщение')
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь', **NULLABLE)
 
     def __str__(self):
         return f'{self.title}'
@@ -35,6 +38,7 @@ class Mailing(models.Model):
                                               verbose_name='статус рассылки')
     message = models.ForeignKey(Message, on_delete=models.SET_NULL, verbose_name='cообщение', **NULLABLE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь', **NULLABLE)
+    client = models.ManyToManyField(Client, verbose_name='клиент', )
 
     def __str__(self):
         return f'{self.status}'

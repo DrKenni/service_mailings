@@ -2,8 +2,10 @@
 {% block content %}
 <div class="col-12 mb-3 ">
     <a class="btn btn-outline-primary" href="{% url 'mailing:create_mailing' %}">Добавить рассылку</a>
+    <a class="btn btn-outline-primary" href="{% url 'mailing:list_message' %}">Список сообщений для рассылки</a>
 </div>
 {% for object in object_list %}
+{% if user == object.user or user.is_superuser %}
 <div class="col-md-4">
     <div class="card mb-4 box-shadow">
         <div class="card-body">
@@ -15,18 +17,15 @@
                 <nav class="btn-group">
                     <a type="button" class="btn btn-sm btn-outline-secondary"
                        href="{% url 'mailing:view_mailing' object.pk %}">View</a>
-                    {% if user == object.user %}
                     <a type="button" class="btn btn-sm btn-outline-secondary"
                          href="{% url 'mailing:update_mailing' object.pk %}">Edit</a>
-                    {% endif %}
-                    {% if user == object.user %}
                     <a type="button" class="btn btn-sm btn-outline-danger"
                          href="{% url 'mailing:delete_mailing' object.pk %}">Delete</a>
-                    {% endif %}
                 </nav>
             </div>
         </div>
     </div>
 </div>
+{% endif %}
 {% endfor %}
 {% endblock %}

@@ -5,6 +5,7 @@
     <a class="btn btn-outline-primary" href="{% url 'client:create' %}">Добавить клинта</a>
 </div>
 {% for object in object_list %}
+{% if user == object.user or user.is_superuser %}
 <div class="col-md-4">
     <div class="card mb-4 box-shadow">
         <div class="card-body">
@@ -34,5 +35,6 @@
         </div>
     </div>
 </div>
+{% endif %}
 {% endfor %}
 {% endblock %}

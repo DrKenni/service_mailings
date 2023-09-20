@@ -5,7 +5,7 @@ from mailing.models import Message, Mailing, Log
 
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('title', 'body')
+    list_display = ('title', 'body', 'user')
 
 
 @admin.register(Mailing)
@@ -16,5 +16,5 @@ class MailingAdmin(admin.ModelAdmin):
 
 @admin.register(Log)
 class LogAdmin(admin.ModelAdmin):
-    list_display = ('date_attempts', 'status', 'server_response')
+    list_display = ('date_attempts', 'status', 'server_response', 'mailing')
     list_filter = ('date_attempts', 'status', 'server_response')

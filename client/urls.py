@@ -6,9 +6,9 @@ from client.views import ClientListView, ClientCreateView, ClientDetailView, Cli
 app_name = ClientConfig.name
 
 urlpatterns = [
-    path('', ClientListView.as_view(), name='list'),
-    path('create/', ClientCreateView.as_view(), name='create'),
-    path('view/<int:pk>', ClientDetailView.as_view(), name='view'),
-    path('edit/<int:pk>', ClientUpdateView.as_view(), name='edit'),
-    path('delete/<int:pk>', ClientDeleteView.as_view(), name='delete'),
+    path('client/list/', ClientListView.as_view(), name='list'),
+    path('client/create/', ClientCreateView.as_view(), name='create'),
+    path('client/view/<int:pk>', ClientDetailView.as_view(), name='view'),
+    path('client/edit/<int:pk>', ClientUpdateView.as_view(), name='edit'),
+    path('client/delete/<int:pk>', ClientDeleteView.as_view(), name='delete'),
 ]
